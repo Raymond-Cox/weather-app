@@ -5,6 +5,8 @@ class ReturnData extends Component {
     super(props);
     this.getWeatherData = this.getWeatherData.bind(this);
     this.geoFindMe = this.geoFindMe.bind(this);
+    this.successPos = this.successPos.bind(this);
+    this.errorPos = this.errorPos.bind(this);
     this.state = {
       latitude: null,
       longitude: null,
@@ -13,33 +15,51 @@ class ReturnData extends Component {
     }
   }
 
-  
-  geoFindMe = () => {
-    function success(pos) {
-      const crd = pos.coords;
-      let latitude = crd.latitude;
-      let longitude = crd.longitude;
-      console.log('what is this', this);
+  successPos = (pos) => {
+    const crd = pos.coords;
+    let latitude = crd.latitude;
+    let longitude = crd.longitude;
 
-      // I can't get this.setState here to work properly.
-      // this.setState({
-      //   latitude: latitude,
-      //   longitude: longitude,
-      // });
-    }
-    
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error);
-    
+    console.log('this is from geoFindMe', latitude, longitude)
+    this.getWeatherData(latitude, longitude);
   }
-  getWeatherData() {
+
+  errorPos = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`)
+  }
+
+  geoFindMe = () => {
+    navigator.geolocation.getCurrentPosition(this.successPos, this.errorPos);
+  }
+
+  
+  // geoFindMe = () => {
+  //   function success(pos) {
+  //     const crd = pos.coords;
+  //     let latitude = crd.latitude;
+  //     let longitude = crd.longitude;
+
+  //     console.log('this is from geoFindMe', latitude, longitude)
+  //     // I can't get this.setState here to work properly.
+  //     this.setState({
+  //       latitude: latitude,
+  //       longitude: longitude,
+  //     });
+  //   }
+    
+  //   function error(err) {
+  //     console.warn(`ERROR(${err.code}): ${err.message}`);
+  //   }
+
+  //   navigator.geolocation.getCurrentPosition(success, error);
+    
+  // }
+
+  getWeatherData(lat, long) {
     console.log('this is from getWeatherData');
     const proxyURL = 'https://cors-anywhere.herokuapp.com/'
-    const targetURL = 'https://api.darksky.net/forecast/7685c4ab164d2cf45c58d6f908d7635a/37.8267,-122.4233?exclude=[currently,minutely,hourly,flags]'
-    // let targetURL = 'https://api.darksky.net/forecast/7685c4ab164d2cf45c58d6f908d7635a/' + this.state.latitude + ',' + this.state.longitude + '?exclude=[currently,minutely,hourly,flags]'
+    // const targetURL = 'https://api.darksky.net/forecast/7685c4ab164d2cf45c58d6f908d7635a/37.8267,-122.4233?exclude=[currently,minutely,hourly,flags]'
+    let targetURL = 'https://api.darksky.net/forecast/7685c4ab164d2cf45c58d6f908d7635a/' + lat + ',' + long + '?exclude=[currently,minutely,hourly,flags]'
     fetch(proxyURL + targetURL)
       .then(data => data.json())
       .then(results => {
@@ -51,6 +71,8 @@ class ReturnData extends Component {
         this.setState({
             weatherData: weatherData,
             location: location,
+            latitude: lat,
+            longitude: long,
         });
       })
       .catch(error => {
@@ -61,10 +83,11 @@ class ReturnData extends Component {
 
 componentWillMount() {
   this.geoFindMe();
-} 
-componentDidMount() {
-  this.getWeatherData();
 }
+
+// componentDidMount() {
+//   this.getWeatherData();
+// }
 
   render() {
     console.log(this.state.weatherData);
