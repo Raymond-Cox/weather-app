@@ -6,7 +6,7 @@ const Header = ({ title, subtitle, credits }) => {
     <div>
       <h1>{title}</h1>
       <h2>{subtitle}</h2>
-      <h2><a href="https://darksky.net/poweredby/">{credits}</a></h2>
+      <h2><a href="https://darksky.net/poweredby/" target="_blank" rel="noopener noreferrer">{credits}</a></h2>
     </div>
   );
 
