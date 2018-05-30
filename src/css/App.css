@@ -1,8 +1,24 @@
 body {
-  background-image: url(https://images.unsplash.com/photo-1497465135434-9dc15238075a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a95358b94233609343f39d0fed9e169a&auto=format&fit=crop&w=1924&q=80);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed; }
+  background: url(https://images.unsplash.com/photo-1497465135434-9dc15238075a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a95358b94233609343f39d0fed9e169a&auto=format&fit=crop&w=1924&q=80) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  background: url(https://images.unsplash.com/photo-1497465135434-9dc15238075a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a95358b94233609343f39d0fed9e169a&auto=format&fit=crop&w=1924&q=80) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
 
 .bold {
   font-weight: bold; }
