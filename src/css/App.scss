@@ -1,0 +1,141 @@
+body {
+  background-image: url(https://images.unsplash.com/photo-1497465135434-9dc15238075a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a95358b94233609343f39d0fed9e169a&auto=format&fit=crop&w=1924&q=80);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+.bold {
+  font-weight: bold;
+}
+.biggerfont {
+  font-size: 20px;
+}
+.App {
+  padding: .5em;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+    & h2 {
+      margin-top: 0;
+    }
+}
+.location {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: underline;
+  margin: 0;
+  padding-bottom: .5em;
+}
+
+/////////////////
+// Card Layout //
+.weatherData {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas:
+  "location"
+  "dailyData";
+
+    & img {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+}
+
+/////////////////
+// Card Design //
+.dailyWeather {
+  display: flex;
+  flex-direction: column;
+  background:rgba(255,255,255, 0.6);
+  border: 1px solid lightgrey;
+  box-shadow: 2px 2px 8px;
+  margin-top: .5em;
+  padding: 1em;
+}
+.weatherSummary {
+  height: 50px;
+  border-top: 1px solid grey;
+  padding-top: 1em;
+}
+@media screen and (min-width: 450px) {
+  .card {
+    width: 65%;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card {
+    width: 85%;
+  }
+
+}
+@media screen and (min-width: 1024px) {
+  .card-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .card {
+    width: 90%;
+  }
+}
+.tempLH {
+  padding-bottom: 1em;
+  border-bottom: 1px solid grey;
+}
+.tempDisplay {
+  color: blue;
+  cursor: pointer;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+/////////////
+// Credits //
+.credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5em;
+    & h3 {
+      margin-top: .25em;
+      margin-bottom: .25em;
+    }
+    & a {
+      color: blue;
+      text-decoration: none;
+    }
+}
+@media screen and (min-width: 768px) {
+  .credits {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
+@media screen and (min-width: 1024px) {
+  .credits {
+    justify-content: space-evenly;
+  }
+}
+@media screen and (min-width: 1024px) and (min-height: 775px) {
+  .credits {
+    position: absolute;
+    width: 98%;
+    left: 0;
+    bottom: 0;
+  }
+}
