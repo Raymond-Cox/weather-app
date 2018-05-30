@@ -3,11 +3,6 @@ import React, { Component } from 'react';
 class ReturnData extends Component {
   constructor(props) {
     super(props);
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    }
     this.getWeatherData = this.getWeatherData.bind(this);
     this.geoFindMe = this.geoFindMe.bind(this);
     this.successPos = this.successPos.bind(this);
@@ -19,8 +14,9 @@ class ReturnData extends Component {
       weatherData: null,
       location: null,
       fahrenheit: true,
+      }
     }
-  }
+  
 
   successPos = (pos) => {
     const crd = pos.coords;
@@ -36,7 +32,7 @@ class ReturnData extends Component {
   }
 
   geoFindMe = (options) => {
-    navigator.geolocation.getCurrentPosition(this.successPos, this.errorPos, options);
+    navigator.geolocation.getCurrentPosition(this.successPos, this.errorPos, options)
   }
 
 
@@ -73,7 +69,12 @@ tempUnitChange() {
   }
 
 componentWillMount() {
-  this.geoFindMe();
+  const options = {
+    enableHighAccuracy: true,
+    timeout: Infinity,
+    maximumAge: 0,
+  }
+  this.geoFindMe(options);
 }
 
   render() {
@@ -90,7 +91,7 @@ componentWillMount() {
             const celsTemps = Math.round((day.temperatureLow - 32) * 5 / 9) + "/" + Math.round((day.temperatureHigh - 32) * 5 / 9);
           
           return (
-            <div className="card">
+            <div className="card" key={index}>
               <div key={index} className="dailyWeather">
                 <p className="bold biggerfont">{weekDay}</p>
                 <p className="weatherSummary">{day.summary}</p>
