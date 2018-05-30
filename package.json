@@ -13,5 +13,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "http://raymond-cox.github.io/weather-app"
+  "homepage": "http://raymond-cox.github.io/weather-app/"
 }
