@@ -86,7 +86,7 @@ componentWillMount() {
           {this.state.weatherData && this.state.weatherData.map((day, index) => {
             const time = day.time;
             const weekDay = new Date(time * 1000).toString().split(" ").slice(0, 3).join(" ");
-            const iconUrl = "http://webdesignbyraymond.com/weather-app/" + day.icon + ".svg";
+            const iconUrl = "https://webdesignbyraymond.com/weather-app/" + day.icon + ".svg";
             const fahrTemps = Math.round(day.temperatureLow) + "/" + Math.round(day.temperatureHigh);
             const celsTemps = Math.round((day.temperatureLow - 32) * 5 / 9) + "/" + Math.round((day.temperatureHigh - 32) * 5 / 9);
           
